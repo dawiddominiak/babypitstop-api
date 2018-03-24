@@ -1,7 +1,7 @@
 package pl.dawiddominiak.babypitstop.domain;
 
 import javax.persistence.*;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 public class Place {
@@ -15,6 +15,9 @@ public class Place {
 
     private String name;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "place")
+    private List<ChangingTable> changingTables = new ArrayList<>();
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
@@ -24,12 +27,24 @@ public class Place {
         this.description = description;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public Location getLocation() {
         return location;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public List<ChangingTable> getChangingTables() {
+        return changingTables;
     }
 
     @Override
@@ -54,6 +69,7 @@ public class Place {
                 "id=" + id +
                 ", location=" + location +
                 ", name='" + name + '\'' +
+                ", changingTables=" + changingTables +
                 ", description='" + description + '\'' +
                 '}';
     }

@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/babypitstop
+    username: babypitstop
+    password: babypitstop
+    driver-class-name: org.postgresql.Driver
